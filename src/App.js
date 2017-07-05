@@ -10,13 +10,13 @@ class App extends Component {
       notes:{
             'note-1': {
                 id: 'note-1',
-                title: 'help from app',
-                body: 'me'
+                title: 'PETYA Dogs',
+                body: 'check this sweet .bat flying around'
             },
             'note-2': {
                 id: 'note-2',
-                title: 'help2 from app',
-                body: 'me2',
+                title: 'Lazurus did bangladesh',
+                body: '81 million',
             },
       },
       noteStatus:{

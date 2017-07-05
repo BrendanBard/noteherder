@@ -12,7 +12,7 @@ class NoteForm extends Component {
         return (
             <div className="NoteForm">
                 <div className="form-actions">
-                    <button type="button"><i className="fa fa-trash-o"></i>
+                    <button id='delete' type="button"><i className="fa fa-trash-o" ></i>
                     </button>
                 </div>
                 <form>
