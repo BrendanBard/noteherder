@@ -1,9 +1,11 @@
 import React from 'react'
 
 const Note= (props) =>{
-    
+    const handleClick = () => {
+        console.log('oh gawd y')
+    }
 return(
-    <a href="/notes/note-1497983165049" className="active">
+    <a  className="active" onClick={handleClick}>
               <li>
                 <div className="note">
                   {props.note.title}
