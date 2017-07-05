@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 
 import './NoteForm.css'
 class NoteForm extends Component {
-    render() {
+    // activeNote(title, body){
+    //     const t = document.getElementById('title')
+    //     const b = document.getElementById('body')
+    //     b.value = body
+    //     t.value = title
+    // }
+    render(props) {
         return (
             <div className="NoteForm">
                 <div className="form-actions">
@@ -11,10 +17,10 @@ class NoteForm extends Component {
                 </div>
                 <form>
                     <p>
-                        <input type="text" name="title" placeholder="Title your note" />
+                        <input id='title' type="text" name="title" placeholder="Title your note" />
                     </p>
 
-                    <textarea name="body"></textarea>
+                    <textarea id='body' name="body" ></textarea>
                 </form>
             </div>
         )

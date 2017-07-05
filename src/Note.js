@@ -2,10 +2,13 @@ import React from 'react'
 
 const Note= (props) =>{
     const handleClick = () => {
-        console.log('oh gawd y')
+        
     }
 return(
-    <a className="active" onClick={handleClick}>
+    <a className="active" onClick={() => {
+            props.changeSelectedNote(props.note.title, props.note.body)
+            
+        }}>
               <li>
                 <div className="note">
                   {props.note.title}
