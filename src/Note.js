@@ -5,7 +5,7 @@ const Note= (props) =>{
         console.log('oh gawd y')
     }
 return(
-    <a  className="active" onClick={handleClick}>
+    <a className="active" onClick={handleClick}>
               <li>
                 <div className="note">
                   {props.note.title}
