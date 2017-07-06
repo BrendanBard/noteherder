@@ -20,11 +20,9 @@ class App extends Component {
           body: 'Hey, look at that .bat flying around!',
         },
       },
-      currentNote: {
-        id: null,
-        title: '',
-        body: '',
-      }
+      currentNote: this.blankNote(),
+       
+      
     }
   }
 
@@ -32,13 +30,34 @@ class App extends Component {
     this.setState({ currentNote: note })
   }
 
+  blankNote = () => {
+    return {
+      id: null,
+      title: '',
+      body: '',
+    }
+  }
+
+  resetCurrentNote = () => {
+    this.setCurrentNote(this.blankNote())
+  }
+
   render() {
+
+    const actions = {
+      setCurrentNote: this.setCurrentNote,
+      resetCurrentNote: this.resetCurrentNote,
+    }
+    const noteData = {
+      notes: this.state.notes,
+      currentNote:this.state.currentNote,
+    }
+
     return (
       <div className="App">
         <Main
-          notes={this.state.notes}
-          currentNote={this.state.currentNote}
-          setCurrentNote={this.setCurrentNote}
+          {...noteData}
+         {...actions}
         />
       </div>
     );
