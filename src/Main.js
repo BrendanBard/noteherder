@@ -6,12 +6,16 @@ import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 
 const Main = (props) => {
-    return (
-        <div className = 'Main'>
-            <Sidebar />
-            <NoteList notes={props.notes} changeSelectedNote={props.changeSelectedNote}/>
-            <NoteForm changeSelectedNote={props.changeSelectedNote}/>
-        </div>  
-    )
+  return (
+    <div className="Main">
+      <Sidebar />
+      <NoteList
+        notes={props.notes}
+        setCurrentNote={props.setCurrentNote}
+      />
+      <NoteForm currentNote={props.currentNote} />
+    </div>
+  )
 }
+
 export default Main

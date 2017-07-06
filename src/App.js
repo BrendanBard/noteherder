@@ -4,46 +4,47 @@ import './App.css'
 import Main from './Main'
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super()
-    this.state = {
-      notes:{
-            'note-1': {
-                id: 'note-1',
-                title: 'PETYA Dogs',
-                body: 'check this sweet .bat flying around'
-            },
-            'note-2': {
-                id: 'note-2',
-                title: 'Lazurus did bangladesh',
-                body: '81 million',
-            },
-      },
-      noteStatus:{
-        selectedTitle: '',
-        selectedBody: ''
-      }
 
+    this.setCurrentNote = this.setCurrentNote.bind(this)
+
+    this.state = {
+      notes: {
+        'note-1': {
+          id: 'note-1',
+          title: 'Lazarus did Bangladesh',
+          body: '81 million',
+        },
+        'note-2': {
+          id: 'note-2',
+          title: 'PETYA dogs',
+          body: 'Hey, look at that .bat flying around!',
+        },
+      },
+      currentNote: {
+        id: null,
+        title: '',
+        body: '',
+      }
     }
   }
-  selectedNote = (title, body) => {
-    const newState = {...this.state}
-    newState.noteStatus.selectedTitle = title
-    newState.noteStatus.selectedBody = body
-    const t = document.getElementById('title')
-    const b = document.getElementById('body')
-    this.setState(newState, () =>   
-    t.value = newState.noteStatus.selectedTitle,
-    b.value = newState.noteStatus.selectedBody
-     );
+
+  setCurrentNote(note) {
+    this.setState({ currentNote: note })
   }
+
   render() {
     return (
       <div className="App">
-        <Main notes={this.state.notes} changeSelectedNote={this.selectedNote}/>
+        <Main
+          notes={this.state.notes}
+          currentNote={this.state.currentNote}
+          setCurrentNote={this.setCurrentNote}
+        />
       </div>
     );
   }
 }
 
-export default App;
+export default App
