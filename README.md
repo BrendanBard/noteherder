@@ -1,13 +1,16 @@
 ##Noteherder
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+##Getting Started
+*Copy src/base.example.js to 'src/base.js' and fill in your firebase condif detials
+*Run 'yarn install'
  ##Day 6 Homework
  * Load data in the form when a note is clicked in the list
- ###Bonus Credit
+ ##Bonus Credit
  * Add a note to the list when the form is submitted
- ###Super Mega Bonus Credit
+ ##Super Mega Bonus Credit
  * Make the delete button work
- ###Super Mega Bonus Credit Hyper Fighting
+ ##Super Mega Bonus Credit Hyper Fighting
  * Make the plus button in the sidebar clear the form so a new note can be added
 
 
