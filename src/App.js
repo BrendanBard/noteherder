@@ -3,6 +3,7 @@ import base from './base'
 
 import './App.css'
 import Main from './Main'
+import SignIn from './SignIn'
 
 class App extends Component {
   constructor() {
@@ -11,7 +12,18 @@ class App extends Component {
     this.state = {
       notes: {},
       currentNote: this.blankNote(),
+      uid: null,
     }
+  }
+
+  componentDidMount = () => {
+    base.syncState(
+      'notes',
+      {
+        context: this,  // what object the state is on
+        state: 'notes', // which property to sync
+      }
+    )
   }
 
   blankNote = () => {
@@ -40,19 +52,34 @@ class App extends Component {
     this.setState({ notes })
     this.setCurrentNote(note)
   }
-  removeCurrentNote = () =>{
+
+  removeCurrentNote = () => {
     const notes = {...this.state.notes}
-    delete notes[this.state.currentNote.id]
-    this.setState({notes})
+    notes[this.state.currentNote.id] = null
+
+    this.setState({ notes })
     this.resetCurrentNote()
   }
 
-  render() {
+  signedIn = () => {
+    return this.state.uid
+  }
+
+  handleAuth = () => {
+    this.setState({ uid: 'dstrus' })
+  }
+
+  signOut = () => {
+    this.setState({ uid: null })
+  }
+
+  renderMain() {
     const actions = {
       setCurrentNote: this.setCurrentNote,
       resetCurrentNote: this.resetCurrentNote,
       saveNote: this.saveNote,
-      removeCurrentNote: this.removeCurrentNote
+      removeCurrentNote: this.removeCurrentNote,
+      signOut: this.signOut,
     }
 
     const noteData = {
@@ -61,11 +88,19 @@ class App extends Component {
     }
 
     return (
+      <Main
+        {...actions}
+        {...noteData}
+      />
+    )
+  }
+
+  render() {
+    
+
+    return (
       <div className="App">
-        <Main
-          {...actions}
-          {...noteData}
-        />
+        { this.signedIn() ? this.renderMain() : <SignIn handleAuth={this.handleAuth} /> }
       </div>
     );
   }
