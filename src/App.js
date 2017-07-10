@@ -8,7 +8,6 @@ import SignIn from './SignIn'
 class App extends Component {
   constructor() {
     super()
-
     this.state = {
       notes: {},
       currentNote: this.blankNote(),
