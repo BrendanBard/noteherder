@@ -8,9 +8,10 @@ import SignIn from './SignIn'
 class App extends Component {
   constructor() {
     super()
+
     this.state = {
       notes: {},
-      currentNote: this.blankNote(),
+      currentNoteId: null,
       uid: null,
     }
   }
@@ -20,12 +21,12 @@ class App extends Component {
     auth.onAuthStateChanged(
       (user) => {
         if (user) {
+          // signed in
           this.handleAuth(user)
         } else {
+          // signed out
           this.handleUnauth()
-
         }
-
       }
     )
   }
@@ -38,44 +39,36 @@ class App extends Component {
 
   syncNotes = () => {
     this.bindingRef = base.syncState(
-      `${this.state.uid}/notes`,
+      `notes/${this.state.uid}`,
       {
-        context: this,
-        state: 'notes',
+        context: this,  // what object the state is on
+        state: 'notes', // which property to sync
       }
     )
   }
 
-  blankNote = () => {
-    return {
-      id: null,
-      title: '',
-      body: '',
-    }
-  }
-
-  setCurrentNote = (note) => {
-    this.setState({ currentNote: note })
+  setCurrentNoteId = (noteId) => {
+    this.setState({ currentNoteId: noteId })
   }
 
   resetCurrentNote = () => {
-    this.setCurrentNote(this.blankNote())
+    this.setCurrentNoteId(null)
   }
 
   saveNote = (note) => {
-    const notes = { ...this.state.notes }
+    const notes = {...this.state.notes}
     if (!note.id) {
       note.id = Date.now()
     }
     notes[note.id] = note
 
     this.setState({ notes })
-    this.setCurrentNote(note)
+    this.setCurrentNoteId(note.id)
   }
 
-  removeCurrentNote = () => {
-    const notes = { ...this.state.notes }
-    notes[this.state.currentNote.id] = null
+  removeNote = (note) => {
+    const notes = {...this.state.notes}
+    notes[note.id] = null
 
     this.setState({ notes })
     this.resetCurrentNote()
@@ -87,34 +80,41 @@ class App extends Component {
 
   handleAuth = (user) => {
     localStorage.setItem('uid', user.uid)
-    this.setState({ uid: user.uid }, this.syncNotes)
+    this.setState(
+      { uid: user.uid },
+      this.syncNotes
+    )
+  }
 
+  handleUnauth = () => {
+    localStorage.removeItem('uid')
+    if (this.bindingRef) {
+      base.removeBinding(this.bindingRef)
+    }
+
+    this.setState({
+      uid: null,
+      notes: {},
+      currentNoteId: null,
+    })
   }
 
   signOut = () => {
     auth.signOut()
   }
-  handleUnauth = () => {
-    localStorage.removeItem('uid')
-    if (this.bidningRef) {
-      base.removeBinding(this.bindingRef)
-    }
-    this.setState({ uid: null, currentNote: this.blankNote(), notes: {} })
-
-  }
 
   renderMain() {
     const actions = {
-      setCurrentNote: this.setCurrentNote,
+      setCurrentNoteId: this.setCurrentNoteId,
       resetCurrentNote: this.resetCurrentNote,
       saveNote: this.saveNote,
-      removeCurrentNote: this.removeCurrentNote,
+      removeNote: this.removeNote,
       signOut: this.signOut,
     }
 
     const noteData = {
       notes: this.state.notes,
-      currentNote: this.state.currentNote,
+      currentNoteId: this.state.currentNoteId,
     }
 
     return (
@@ -126,11 +126,9 @@ class App extends Component {
   }
 
   render() {
-
-
     return (
       <div className="App">
-        {this.signedIn() ? this.renderMain() : <SignIn />}
+        { this.signedIn() ? this.renderMain() : <SignIn /> }
       </div>
     );
   }

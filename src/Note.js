@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Note = ({note, setCurrentNote}) => {
+const Note = ({ note, setCurrentNoteId }) => {
   const handleClick = () => {
-    setCurrentNote(note)
+    setCurrentNoteId(note.id)
   }
 
   return (
@@ -15,10 +15,10 @@ const Note = ({note, setCurrentNote}) => {
           <div className="note-title">
             {note.title}
           </div>
-          <div className="note-body">
-            <p>
-              {note.body}
-            </p>
+          <div
+            className="note-body"
+            dangerouslySetInnerHTML={{ __html: note.body }}
+          >
           </div>
         </div>
       </li>

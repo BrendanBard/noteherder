@@ -13,6 +13,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  ##Super Mega Bonus Credit Hyper Fighting
  * Make the plus button in the sidebar clear the form so a new note can be added
 
+ ##Day whatever
+ *Log into github with it (copy something into config?)
+ ##Bonus Credit
+ *
+ ##Super Mega Bonus Credit
+ *
+ ##Super Mega Bonus Credit Hyper Fighting
+ *
+
 
 
 
