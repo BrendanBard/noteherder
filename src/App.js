@@ -32,7 +32,7 @@ class App extends Component {
 
   syncNotes = () => {
     base.syncState(
-      'notes',
+      `${this.state.uid}/notes`,
       {
         context: this,  
         state: 'notes', 
