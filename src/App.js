@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   getUserFromLocalStorage = () => {
-    const uid = localStroage.getItem('uid')
+    const uid = localStorage.getItem('uid')
     if (!uid) return
     this.setState({ uid })
   }

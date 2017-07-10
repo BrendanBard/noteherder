@@ -1,5 +1,7 @@
 import React from 'react'
 
+import quill from './quill.svg'
+import googleLogo from './google.svg'
 import './SignIn.css'
 import {auth, googleProvider} from './base'
 
@@ -13,13 +15,24 @@ const SignIn = () => {
   }
 
   return (
-    <div className="SignIn">
-      <button
-        onClick={authenticate}
-      >
-        Sign In
-      </button>
-    </div>
+      <div className="SignIn">
+        <header className="Header">
+          <img src={quill} alt=""/>
+          <span className="title">Noteherder</span>
+        </header>
+        <main>
+          <h3>Hey, Nerd! You Like Notes?</h3>
+          <p>You never know when you'll need to write crap down. In fact, you should probably be taking notes right now.</p>
+          {/*<button className="github">
+            <i className="fa fa-github"></i>
+            Sign in with GitHub
+          </button>*/}
+          <button className="google"  onClick={authenticate}>
+            <img src={googleLogo} alt=""/>
+            Sign in with Google
+          </button>
+        </main>
+      </div>
   )
 }
 
