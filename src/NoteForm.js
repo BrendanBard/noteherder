@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import RichTextEditor from 'react-rte'
-
+import {Route, Switch} from 'react-router-dom'
 import './NoteForm.css'
 
 class NoteForm extends Component {
