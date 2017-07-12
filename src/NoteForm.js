@@ -33,12 +33,20 @@ class NoteForm extends Component {
       id: null,
       title: '',
       body: '',
+      time: '',
     }
+  }
+  getTime = () =>{
+    var time = new Date().getTime()
+    var date = new Date(time)
+    return date.toDateString()
   }
 
   handleChanges = (ev) => {
     const note = {...this.state.note}
     note[ev.target.name] = ev.target.value
+    note.time = this.getTime()
+    
 
     this.setState(
       { note },

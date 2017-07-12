@@ -50,10 +50,12 @@ class App extends Component {
   }
 
   saveNote = (note) => {
+    
     let shouldRedirect = false   
     if (!note.id) {
       note.id = Date.now()
       shouldRedirect = true
+      
     }
     const notes = {...this.state.notes}
     notes[note.id] = note

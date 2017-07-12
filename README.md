@@ -26,6 +26,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  ##Super Mega Bonus Credit Hyper Fighting
  *
 
+ ##DAy 10
+ * add an udpatedAt field to notes (updating its value everytime you save the note)
+ * sort the notes in the list with the most recently updated at the top
+ * 
+
 
 
 
