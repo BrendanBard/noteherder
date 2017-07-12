@@ -39,7 +39,7 @@ class NoteForm extends Component {
   getTime = () =>{
     var time = new Date().getTime()
     var date = new Date(time)
-    return date.toDateString()
+    return date.toDateString() +', ' +  date.getHours() +':' + date.getMinutes()
   }
 
   handleChanges = (ev) => {
@@ -57,10 +57,12 @@ class NoteForm extends Component {
   handleEditorChanges = (editorValue) => {
     const note = {...this.state.note}
     note.body = editorValue.toString('html')
+    
     this.setState(
       { note, editorValue },
       () => this.props.saveNote(note)
     )
+    note.time = this.getTime()
   }
 
   handleRemove = () => {
