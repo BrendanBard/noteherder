@@ -15,7 +15,8 @@ class NoteForm extends Component {
   componentWillReceiveProps = (nextProps) => {
     const idFromUrl = nextProps.match.params.id
     const note = nextProps.notes[idFromUrl] || this.blankNote()
-    if(idFromUrl && !note.id){
+    const noteNotFound = idFromUrl && !note.id
+    if(idFromUrl && nextProps.fireBaseNotesSynced){
       this.props.history.push('/notes')
     }
 
