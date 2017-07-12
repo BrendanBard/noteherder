@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import base, { auth } from './base'
-import {Route, Switch, Redirect} from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 import './App.css'
 import Main from './Main'
 import SignIn from './SignIn'
+import base, { auth } from './base'
 
 class App extends Component {
   constructor() {
@@ -130,11 +130,10 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path='/sign-in' component={SignIn} />
-          <Route path='/notes' render={() => this.renderMain()}/>
-          <Route render={() => <Redirect to='/notes'/>}/>
-          </Switch>
-        {/*{ this.signedIn() ? this.renderMain() : <SignIn /> }*/}
+          <Route path="/sign-in" component={SignIn} />
+          <Route path="/notes" render={() => this.renderMain()} />
+          <Route render={() => <Redirect to="/notes" /> } />
+        </Switch>
       </div>
     );
   }
