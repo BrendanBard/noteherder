@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ##Getting Started
 *Copy src/base.example.js to 'src/base.js' and fill in your firebase condif detials
 *Run 'yarn install'
+##Deployment
+  run yarn deploy or npm run deploy to deploy the app to firebase
+
+  **note this requires firebase command line tools to be installed npm install -g firebase-tools
  ##Day 6 Homework
  * Load data in the form when a note is clicked in the list
  ##Bonus Credit
