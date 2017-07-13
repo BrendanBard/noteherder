@@ -54,6 +54,7 @@ class App extends Component {
     let shouldRedirect = false   
     if (!note.id) {
       note.id = Date.now()
+     
       shouldRedirect = true
       
     }
